@@ -183,6 +183,47 @@ body[data-theme="paper"] .pill-primary {
   text-decoration-thickness: 2px;
 }
 
+/* Manifesto pinned choreography (doc 04 §3) */
+.sw {
+  position: relative;
+  display: inline-block;
+  margin-inline: 0.14em;
+}
+.strike-line {
+  position: absolute;
+  left: -2%;
+  right: -2%;
+  top: 52%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.45);
+  transform-origin: left center;
+}
+.manifesto .sw {
+  color: var(--text-low);
+}
+.manifesto .beat + .beat {
+  margin-top: 6rem;
+}
+.manifesto.pinned-mode {
+  padding-block: 0;
+}
+.manifesto.pinned-mode .beats {
+  position: relative;
+  height: 100svh;
+}
+.manifesto.pinned-mode .beat {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding-inline: clamp(20px, 5.5vw, 96px);
+}
+.manifesto.pinned-mode .sw {
+  color: var(--text-hi);
+}
+
 /* Agent dossier rail */
 .snap-rail {
   display: flex;
@@ -306,6 +347,12 @@ details[open] .faq-a {
   }
 }
 
+.menu-overlay {
+  background: rgba(35, 35, 40, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
 .wm-gradient {
   background: linear-gradient(100deg, #f4f4f5 0%, #9db1ff 28%, #c4b5fd 50%, #7ee7c7 72%, #f4f4f5 100%);
   background-size: 220% 100%;
@@ -317,6 +364,34 @@ details[open] .faq-a {
 @keyframes wm-sheen {
   to {
     background-position: 220% 0;
+  }
+}
+
+/* Agent rail: pinned horizontal mode (desktop + motion) */
+.agents-pinned .snap-rail {
+  overflow: visible;
+  scroll-snap-type: none;
+}
+.agents-pinned .snap-rail article {
+  opacity: 0.5;
+  transition: opacity 0.35s var(--ease-out-quart);
+}
+.agents-pinned .snap-rail article.active {
+  opacity: 1;
+}
+.agent-demo {
+  overflow: hidden;
+  white-space: nowrap;
+}
+.agents-pinned .agent-demo {
+  width: 0;
+}
+.agents-pinned .active .agent-demo {
+  animation: typein 1.1s steps(30) 0.2s forwards;
+}
+@keyframes typein {
+  to {
+    width: 100%;
   }
 }
 

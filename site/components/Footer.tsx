@@ -17,7 +17,8 @@ const COLUMNS: [string, { label: string; href: string }[]][] = [
   [
     "Studio",
     [
-      { label: "Work", href: "/#work" },
+      { label: "Work", href: "/work" },
+      { label: "Studio", href: "/studio" },
       { label: "Process", href: "/#process" },
       { label: "FAQ", href: "/#faq" },
     ],
@@ -26,7 +27,7 @@ const COLUMNS: [string, { label: string; href: string }[]][] = [
     "Contact",
     [
       { label: "hello@geniclique.com", href: "mailto:hello@geniclique.com" },
-      { label: "Book a call", href: "/#cta" },
+      { label: "Book a call", href: "/contact" },
     ],
   ],
 ];
