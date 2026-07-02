@@ -1,0 +1,330 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink-0: #050505;
+  --color-ink-1: #0a0a0b;
+  --color-ink-2: #121214;
+  --color-ink-3: #1a1a1e;
+  --color-ink-4: #232328;
+  --color-paper-0: #fafaf8;
+  --color-paper-1: #f1f1ee;
+  --color-paper-2: #e7e7e3;
+  --color-signal: #4d7cff;
+  --color-silver: #c7c7cc;
+
+  --font-sans: var(--font-satoshi), -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", Menlo, monospace;
+
+  --ease-out-quart: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Chapter-scoped semantic tokens — flipped by ChapterObserver via body[data-theme] */
+:root {
+  --text-hi: #f4f4f5;
+  --text-mid: #a1a1aa;
+  --text-low: #71717a;
+  --hairline: rgba(255, 255, 255, 0.08);
+  --signal-dim: rgba(77, 124, 255, 0.25);
+}
+
+body[data-theme="paper"] {
+  --text-hi: #0c0c0d;
+  --text-mid: #52525b;
+  --text-low: #8e8e93;
+  --hairline: rgba(0, 0, 0, 0.1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-ink-0);
+  color: var(--text-hi);
+  transition: background-color 1.2s var(--ease-in-out-soft);
+}
+
+::selection {
+  background: var(--signal-dim);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 3px;
+}
+
+/* Type scale — doc 02 §2 */
+.type-display-xl {
+  font-size: clamp(3.4rem, 8.5vw, 9rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+}
+.type-display-l {
+  font-size: clamp(2.6rem, 5.5vw, 5.5rem);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  font-weight: 500;
+}
+.type-display-m {
+  font-size: clamp(1.9rem, 3.5vw, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-low);
+}
+.mono-data {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Layout rhythm — doc 02 §3 */
+.container-site {
+  margin-inline: auto;
+  max-width: 1440px;
+  padding-inline: clamp(20px, 5.5vw, 96px);
+}
+.section {
+  padding-block: clamp(112px, 14vw, 224px);
+}
+.hairline-t {
+  border-top: 1px solid var(--hairline);
+}
+.hairline-b {
+  border-bottom: 1px solid var(--hairline);
+}
+
+/* Buttons */
+.pill-primary,
+.pill-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 14px 26px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: transform 180ms var(--ease-out-quart), opacity 180ms;
+  cursor: pointer;
+}
+.pill-primary {
+  background: var(--text-hi);
+  color: var(--color-ink-1);
+}
+body[data-theme="paper"] .pill-primary {
+  color: var(--color-paper-0);
+}
+.pill-secondary {
+  border: 1px solid var(--hairline);
+  color: var(--text-hi);
+}
+.pill-primary:hover,
+.pill-secondary:hover {
+  transform: translateY(-1px);
+}
+.pill-primary:active,
+.pill-secondary:active {
+  transform: scale(0.97);
+}
+.pill-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Reveal — Phase 1 scroll entrance (IntersectionObserver adds .in) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s var(--ease-out-quart), transform 0.9s var(--ease-out-quart);
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Liveness — the only colour on the site */
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-signal);
+  box-shadow: 0 0 12px 2px var(--signal-dim);
+  animation: breathe 2.4s ease-in-out infinite;
+}
+.cursor-blink {
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  vertical-align: text-bottom;
+  background: var(--color-signal);
+  animation: blink 1.06s step-end infinite;
+}
+@keyframes breathe {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* Manifesto strike-through */
+.struck {
+  color: var(--text-low);
+  text-decoration: line-through;
+  text-decoration-color: rgba(255, 255, 255, 0.45);
+  text-decoration-thickness: 2px;
+}
+
+/* Agent dossier rail */
+.snap-rail {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 12px;
+  scrollbar-width: none;
+}
+.snap-rail::-webkit-scrollbar {
+  display: none;
+}
+.snap-rail > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  body {
+    transition: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .live-dot,
+  .cursor-blink {
+    animation: none;
+  }
+  .thread-pulse {
+    display: none;
+  }
+}
+
+/* ——— FX layer: aurora glows, 3D hero scene, CTA ring (Phase 2) ——— */
+
+.glow-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.glow {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(90px);
+  opacity: 0.22;
+  background: radial-gradient(circle, var(--g) 0%, transparent 70%);
+  animation: glow-drift 16s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes glow-drift {
+  to {
+    transform: translate3d(70px, -50px, 0) scale(1.18);
+  }
+}
+
+.hero-scene {
+  perspective: 1100px;
+}
+.hero-3d {
+  transform-style: preserve-3d;
+}
+.hero-glow {
+  position: absolute;
+  inset: -15%;
+  background: radial-gradient(circle at 62% 38%, rgba(77, 124, 255, 0.16), transparent 62%);
+  transform: translateZ(-90px);
+  pointer-events: none;
+}
+.float-chip {
+  position: absolute;
+  pointer-events: none;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-mid);
+  background: rgba(26, 26, 30, 0.72);
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  padding: 10px 14px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 32px rgba(77, 124, 255, 0.16);
+  white-space: nowrap;
+}
+
+.cta-ring {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  border-radius: 999px;
+  background: conic-gradient(from 0deg, #4d7cff, #8b5cf6, #2dd4a0, #22d3ee, #4d7cff);
+  filter: blur(56px);
+  opacity: 0.32;
+  animation: ring-spin 14s linear infinite;
+  pointer-events: none;
+}
+@keyframes ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.pill-primary.magnetic:hover {
+  box-shadow: 0 0 44px rgba(139, 92, 246, 0.35);
+}
+
+details[open] .faq-a {
+  animation: faq-in 0.45s var(--ease-out-quart);
+}
+@keyframes faq-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.wm-gradient {
+  background: linear-gradient(100deg, #f4f4f5 0%, #9db1ff 28%, #c4b5fd 50%, #7ee7c7 72%, #f4f4f5 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: wm-sheen 10s linear infinite;
+}
+@keyframes wm-sheen {
+  to {
+    background-position: 220% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow,
+  .cta-ring,
+  .wm-gradient,
+  details[open] .faq-a {
+    animation: none;
+  }
+}
