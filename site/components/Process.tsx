@@ -9,7 +9,7 @@ const PHASES = [
 
 export default function Process() {
   return (
-    <section data-bg="#fafaf8" data-chapter="paper" className="section hairline-t">
+    <section id="process" data-bg="#fafaf8" data-chapter="paper" className="section hairline-t">
       <div className="container-site grid gap-16 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <div className="lg:sticky lg:top-32">

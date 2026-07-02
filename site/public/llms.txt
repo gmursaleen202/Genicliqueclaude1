@@ -1,0 +1,22 @@
+# Geni Clique
+
+> Geni Clique is an AI systems studio. We design and build intelligent AI systems — agents, automations, and custom software — that take repetitive work off business teams and run it around the clock. Based in Australia, serving globally.
+
+## What we build
+
+- [AI Agents](https://geniclique.com/services/ai-agents): Custom AI employees — support, sales, booking, knowledge, voice, email, HR, and operations agents that think, communicate, and execute inside your existing tools.
+- [AI Automation](https://geniclique.com/services/ai-automation): Business process automation — CRM, email, lead nurturing, proposals, reporting, onboarding, and internal operations on rails.
+- [n8n Automation](https://geniclique.com/services/n8n-automation): Enterprise-grade workflow automation connecting hundreds of business applications with AI steps, on infrastructure you own.
+- [Custom Software](https://geniclique.com/services/software): Internal tools and SaaS platforms — CRMs, portals, dashboards, booking and inventory systems — shipped in weeks with AI-assisted engineering.
+- [Mobile Apps](https://geniclique.com/services/apps): iOS, Android, and cross-platform applications at startup speed.
+- [AI Web Development](https://geniclique.com/services/web-development): High-performing, AI-integrated websites — premium design, Lighthouse 95+, built to convert.
+- [SEO & GEO](https://geniclique.com/services/seo): Technical, local, semantic, and programmatic SEO plus Generative Engine Optimization and Answer Engine Optimization — found by Google, cited by AI assistants.
+
+## How we work
+
+Four phases: Map (audit week — find the hours, attach ROI), Design (blueprint the system), Build (ship in weekly sprints), Run (monitor, tune, train). First systems are typically live in weeks, not quarters. Clients own everything we build — accounts, data, and code.
+
+## Contact
+
+- Email: hello@geniclique.com
+- Book a strategy call: https://geniclique.com/#cta

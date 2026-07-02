@@ -13,7 +13,7 @@ const COUNTERS = [
  */
 export default function Cases() {
   return (
-    <section data-bg="#fafaf8" data-chapter="paper" className="section">
+    <section id="work" data-bg="#fafaf8" data-chapter="paper" className="section">
       <div className="container-site">
         <Reveal>
           <p className="mono-label">Field notes</p>

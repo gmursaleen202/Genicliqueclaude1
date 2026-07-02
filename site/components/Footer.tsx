@@ -1,9 +1,34 @@
+import Link from "next/link";
 import GlowField from "./GlowField";
 
-const COLUMNS: [string, string[]][] = [
-  ["Services", ["AI Agents", "AI Automation", "n8n Workflows", "Software", "Apps", "Web", "SEO & GEO"]],
-  ["Studio", ["Work", "Process", "About", "Insights"]],
-  ["Contact", ["hello@geniclique.com", "Book a call", "LinkedIn"]],
+const COLUMNS: [string, { label: string; href: string }[]][] = [
+  [
+    "Services",
+    [
+      { label: "AI Agents", href: "/services/ai-agents" },
+      { label: "AI Automation", href: "/services/ai-automation" },
+      { label: "n8n Workflows", href: "/services/n8n-automation" },
+      { label: "Software", href: "/services/software" },
+      { label: "Apps", href: "/services/apps" },
+      { label: "Web", href: "/services/web-development" },
+      { label: "SEO & GEO", href: "/services/seo" },
+    ],
+  ],
+  [
+    "Studio",
+    [
+      { label: "Work", href: "/#work" },
+      { label: "Process", href: "/#process" },
+      { label: "FAQ", href: "/#faq" },
+    ],
+  ],
+  [
+    "Contact",
+    [
+      { label: "hello@geniclique.com", href: "mailto:hello@geniclique.com" },
+      { label: "Book a call", href: "/#cta" },
+    ],
+  ],
 ];
 
 export default function Footer() {
@@ -21,8 +46,10 @@ export default function Footer() {
             <p className="mono-label">{title}</p>
             <ul className="mt-6 space-y-3">
               {links.map((l) => (
-                <li key={l} className="text-(--text-mid) transition-colors hover:text-(--text-hi)">
-                  {l}
+                <li key={l.label}>
+                  <Link href={l.href} className="text-(--text-mid) transition-colors hover:text-(--text-hi)">
+                    {l.label}
+                  </Link>
                 </li>
               ))}
             </ul>

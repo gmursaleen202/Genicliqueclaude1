@@ -36,9 +36,20 @@ const FAQS = [
   },
 ];
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function Faq() {
   return (
-    <section data-bg="#0a0a0b" data-chapter="dark" className="section hairline-t relative overflow-hidden">
+    <section id="faq" data-bg="#0a0a0b" data-chapter="dark" className="section hairline-t relative overflow-hidden">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <GlowField
         blobs={[
           { color: "#8b5cf6", top: "10%", right: "-12%", size: 640 },
