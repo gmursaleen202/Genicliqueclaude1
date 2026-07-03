@@ -1,7 +1,13 @@
 import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
-import { getService } from "@/lib/services";
+import { SERVICES, getService } from "@/lib/services";
+
+export const dynamic = "force-static";
+
+export function generateStaticParams() {
+  return SERVICES.map((s) => ({ slug: s.slug }));
+}
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

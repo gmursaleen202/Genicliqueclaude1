@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { SERVICES } from "@/lib/services";
 
+export const dynamic = "force-static";
+
 const BASE = "https://geniclique.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
